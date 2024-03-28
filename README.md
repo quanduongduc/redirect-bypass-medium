@@ -4,7 +4,7 @@ Just a simple Chrome extension to bypass Medium's redirect whenever open a Mediu
 
 ## Features
 
-You can use [Medium](medium.com) or any medium list as normal. This extension will trigger only when you choose a particular article to read.
+You can use [Medium](https://medium.com/) or any medium list as normal. This extension will trigger only when you choose a particular article to read.
 
 ## Implementation Notes
 
