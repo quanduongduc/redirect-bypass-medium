@@ -63,6 +63,7 @@ const urlsList = [
 
 // List url and mirrors:
 const mirrors = [
+  "https://readmedium.com/",
   "https://freedium.cfd/",
   "https://freedium-mirror.vercel.app/",
   "https://freedium-miror-saqg.vercel.app/",
