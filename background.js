@@ -71,17 +71,21 @@ const mirrors = [
 
 // Create a promisified version of the asynchronous operation
 function checkUrl(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, false); // synchronous
-  //   Add cor headers
-  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-  //   return false;
-  xhr.send();
-  if (xhr.status == 200) {
-    return true;
-  } else {
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true); // true for asynchronous
+    xhr.onload = function () {
+      if (xhr.status == 200) {
+        resolve(true);
+      } else {
+        reject(false);
+      }
+    };
+    xhr.onerror = function () {
+      reject(false);
+    };
+    xhr.send();
+  });
 }
 
 // Event handler for onBeforeRequest and onUpdated
@@ -93,8 +97,11 @@ function requestHandler(details) {
   let isFound = false;
   let redirectUrl = "";
   for (let i = 0; i < mirrors.length; i++) {
-    // let urlObj = new URL(details.url);
-    redirectUrl = mirrors[i] + details.url.replace("https://", "https:/");
+    if (mirrors[i].includes("freedium")) {
+      redirectUrl = mirrors[i] + details.url.replace("https://", "https:/");
+    } else {
+      redirectUrl = mirrors[i] + details.url;
+    }
     // console.log("re2 " + redirectUrl);
     if (checkUrl(redirectUrl)) {
       isFound = true;
