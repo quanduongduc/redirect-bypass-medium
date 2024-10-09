@@ -61,6 +61,11 @@ const urlsList = [
   "https://blog.devgenius.io/*",
 ];
 
+const blacklistUrls = ["https://towardsdev.com/*"];
+
+// Create a new Web Worker
+const worker = new Worker("worker.js");
+
 // List url and mirrors:
 const mirrors = [
   "https://readmedium.com/",
@@ -70,22 +75,18 @@ const mirrors = [
 ];
 
 // Create a promisified version of the asynchronous operation
-function checkUrl(url) {
-  return new Promise((resolve, reject) => {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true); // true for asynchronous
-    xhr.onload = function () {
-      if (xhr.status == 200) {
-        resolve(true);
-      } else {
-        reject(false);
-      }
-    };
-    xhr.onerror = function () {
-      reject(false);
-    };
-    xhr.send();
-  });
+async function checkUrl(url) {
+  const result = false;
+  try {
+    const response = await fetch(url, {
+      method: "HEAD",
+      mode: "cors",
+    });
+    result = response.ok;
+  } catch (e) {
+    console.log("Error", e);
+    result = false;
+  }
 }
 
 // Event handler for onBeforeRequest and onUpdated
@@ -94,16 +95,35 @@ function requestHandler(details) {
     return { cancel: false }; // Don't redirect
   }
 
+  // if details.url is in blacklistUrls, return { cancel: false }
+  for (let i = 0; i < blacklistUrls.length; i++) {
+    if (details.url.includes(blacklistUrls[i])) {
+      return { cancel: false };
+    }
+  }
+
+  // If details.url contain word "global-identity", return { cancel: false }
+  if (details.url.includes("global-identity")) {
+    return { cancel: false };
+  }
+
   let isFound = false;
   let redirectUrl = "";
   for (let i = 0; i < mirrors.length; i++) {
-    if (mirrors[i].includes("freedium")) {
-      redirectUrl = mirrors[i] + details.url.replace("https://", "https:/");
-    } else {
-      redirectUrl = mirrors[i] + details.url;
-    }
+    // if (mirrors[i].includes("freedium")) {
+    redirectUrl = mirrors[i] + details.url.replace("https://", "https:/");
+    // } else {
+    //   redirectUrl = mirrors[i] + details.url;
+    // }
     // console.log("re2 " + redirectUrl);
-    if (checkUrl(redirectUrl)) {
+    // const callUrl = checkUrl(redirectUrl);
+    const callUrl = true;
+    // console.log("Call url", callUrl);
+    checkUrl(redirectUrl).then((status) => {
+      console.log("Status", status);
+      callUrl = status;
+    });
+    if (callUrl) {
       isFound = true;
       break;
     }
@@ -125,38 +145,3 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
-
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-  function urlMatchesPattern(url, pattern) {
-    const regexPattern = pattern
-      .replace(/\./g, "\\.") // Escape dots
-      .replace(/\*/g, ".*"); // Replace wildcard with regex pattern
-
-    const regex = new RegExp(`^${regexPattern}$`);
-    return regex.test(url);
-  }
-
-  const url = changeInfo.url;
-
-  const matches = urlsList.some((pattern) => urlMatchesPattern(url, pattern));
-
-  if (!matches) {
-    return;
-  }
-
-  //   const redirectUrl = "https://freedium.cfd/" + changeInfo.url;
-  let isFound = false;
-  for (let i = 0; i < mirrors.length; i++) {
-    const redirectUrl =
-      mirrors[i] + changeInfo.url.replace("https://", "https:/");
-    // console.log("re1 " + redirectUrl);
-    if (checkUrl(redirectUrl)) {
-      isFound = true;
-      break;
-    }
-  }
-
-  if (isFound) {
-    chrome.tabs.reload(tabId);
-  }
-});
