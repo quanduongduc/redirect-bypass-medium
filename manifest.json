@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Medium bypass redirect Extension",
-    "description": "Medium bypass redirect Extension",
-    "version": "1.0",
+    "name": "Medium Reader",
+    "description": "Automatically bypasses Medium's paywall and redirect system to provide free access to articles. Works with Medium.com and popular Medium publications like Towards Data Science, Better Programming, and more.",
+    "version": "1.0.0",
     "action": {
         "default_popup": "hello.html",
         "default_icon": "favicon-32x32.png"
