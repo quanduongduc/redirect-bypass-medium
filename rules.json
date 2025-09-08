@@ -1,0 +1,396 @@
+[
+    {
+        "id": 1,
+        "priority": 2,
+        "action": {
+            "type": "allow"
+        },
+        "condition": {
+            "regexFilter": ".*global-identity.*",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "priority": 2,
+        "action": {
+            "type": "allow"
+        },
+        "condition": {
+            "regexFilter": "^https://towardsdev\\.com/.*$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://medium.com/\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://medium\\.com/(.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://([^/]+\\.medium\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(towardsdatascience\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(hackernoon\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(medium\\.freecodecamp\\.org/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(psiloveyou\\.xyz/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(betterhumans\\.coach\\.me/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 10,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(codeburst\\.io/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 11,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(theascent\\.pub/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 12,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(uxdesign\\.cc/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 13,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(levelup\\.gitconnected\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 14,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(itnext\\.io/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(betterprogramming\\.pub/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 16,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://([^/]+\\.betterprogramming\\.pub/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 17,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://([^/]+\\.plainenglish\\.io/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 18,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(betterhumans\\.pub/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 19,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(pub\\.towardsai\\.net/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 20,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(bettermarketing\\.pub/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 21,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(entrepreneurshandbook\\.co/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 22,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(proandroiddev\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 23,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(uxplanet\\.org/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 24,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(productcoalition\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 25,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://freedium.cfd/https://\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https://(netflixtechblog\\.com/.*)$",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    }
+]

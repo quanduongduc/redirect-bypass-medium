@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Hello Extension</title>
-    <link rel="stylesheet" href="hello.css">
+    <title>Medium Bypass Extension</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+        }
+        h1 {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .status {
+            font-size: 12px;
+            text-align: center;
+            opacity: 0.8;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Medium bypass redirect Extension</h1>
-    <!-- Add your extension logic here -->
-</body>
+    <h1>🚀 Medium Bypass</h1>
+    
+    <div class="info">
+        <p><strong>Status:</strong> Active ✅</p>
+        <p>Automatically redirects Medium articles to Freedium for free reading.</p>
+    </div>
+    
+    <button id="redirectCurrent" class="button">
+        📖 Open Current Page in Freedium
+    </button>
+    
+    <button id="openFreedium" class="button">
+        🌐 Visit Freedium.cfd
+    </button>
+    
+    <div class="status">
+        Right-click on Medium pages for quick access!
+    </div>
 
+    <script src="popup.js"></script>
+</body>
 </html>

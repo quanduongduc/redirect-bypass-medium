@@ -1,21 +1,22 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Medium bypass redirect Extension",
     "description": "Medium bypass redirect Extension",
     "version": "1.0",
-    "browser_action": {
+    "action": {
         "default_popup": "hello.html",
         "default_icon": "favicon-32x32.png"
     },
     "background": {
-        "scripts": [
-            "background.js"
-        ]
+        "service_worker": "background.js",
+        "type": "module"
     },
     "permissions": [
-        "webRequest",
-        "webRequestBlocking",
-        "tabs",
+        "declarativeNetRequest",
+        "activeTab",
+        "contextMenus"
+    ],
+    "host_permissions": [
         "https://medium.com/*",
         "https://towardsdatascience.com/*",
         "https://hackernoon.com/*",
@@ -77,5 +78,14 @@
         "https://www.inbitcoinwetrust.net/*",
         "https://blog.prototypr.io/*",
         "https://blog.devgenius.io/*"
-    ]
+    ],
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "medium_redirect_rules",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    }
 }
