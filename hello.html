@@ -1,66 +1,257 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Medium Bypass Extension</title>
     <style>
+        :root {
+            /* Light theme colors */
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --button-bg: #ffffff;
+            --button-color: #475569;
+            --button-border: #e2e8f0;
+            --button-hover-bg: #f8fafc;
+            --button-hover-border: #c7d2fe;
+            --footer-color: #64748b;
+            --footer-border: #e2e8f0;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.08);
+            --primary-color: #8b5cf6;
+            --primary-hover: #7c3aed;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark theme colors */
+                --bg-color: #0f172a;
+                --text-color: #f1f5f9;
+                --card-bg: #1e293b;
+                --card-border: #334155;
+                --button-bg: #1e293b;
+                --button-color: #cbd5e1;
+                --button-border: #334155;
+                --button-hover-bg: #334155;
+                --button-hover-border: #8b5cf6;
+                --footer-color: #94a3b8;
+                --footer-border: #334155;
+                --shadow-light: rgba(0, 0, 0, 0.3);
+                --shadow-medium: rgba(0, 0, 0, 0.4);
+                --primary-color: #8b5cf6;
+                --primary-hover: #a855f7;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            width: 300px;
+            width: 340px;
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        
+        .container {
+            padding: 24px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+            font-weight: 400;
+        }
+        
+        .status-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             padding: 20px;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-medium);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .status-description {
+            font-size: 13px;
+            opacity: 0.9;
+            text-align: center;
+            line-height: 1.4;
             margin: 0;
         }
-        h1 {
-            font-size: 18px;
-            margin: 0 0 15px 0;
-            text-align: center;
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
         }
-        .info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+        
         .button {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
+            background: var(--button-bg);
+            border: 1px solid var(--button-border);
+            color: var(--button-color);
+            padding: 14px 18px;
+            border-radius: 12px;
             cursor: pointer;
-            width: 100%;
             font-size: 14px;
-            margin-bottom: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 4px var(--shadow-light);
         }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
         .button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--button-hover-bg);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow-medium);
+            border-color: var(--button-hover-border);
         }
-        .status {
-            font-size: 12px;
+        
+        .button:hover::before {
+            left: 100%;
+        }
+        
+        .button:active {
+            transform: translateY(0);
+        }
+        
+        .primary-button {
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            color: white;
+        }
+        
+        .primary-button:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+        
+        .footer {
             text-align: center;
-            opacity: 0.8;
+            font-size: 12px;
+            opacity: 0.7;
+            line-height: 1.4;
+            padding: 16px 0 0 0;
+            border-top: 1px solid var(--footer-border);
+            color: var(--footer-color);
+        }
+        
+        .footer-tip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container > * {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .status-card {
+            animation-delay: 0.1s;
+        }
+        
+        .buttons {
+            animation-delay: 0.2s;
+        }
+        
+        .footer {
+            animation-delay: 0.3s;
         }
     </style>
 </head>
 <body>
-    <h1>🚀 Medium Bypass</h1>
-    
-    <div class="info">
-        <p><strong>Status:</strong> Active ✅</p>
-        <p>Automatically redirects Medium articles to Freedium for free reading.</p>
-    </div>
-    
-    <button id="redirectCurrent" class="button">
-        📖 Open Current Page in Freedium
-    </button>
-    
-    <button id="openFreedium" class="button">
-        🌐 Visit Freedium.cfd
-    </button>
-    
-    <div class="status">
-        Right-click on Medium pages for quick access!
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Medium Bypass</h1>
+            <p class="subtitle">Free access to Medium articles</p>
+        </div>
+        
+        <div class="status-card">
+            <div class="status-indicator">
+                <span>Status: Active</span>
+                <span>✅</span>
+            </div>
+            <p class="status-description">
+                Automatically redirects Medium articles to Freedium for unlimited free reading
+            </p>
+        </div>
+        
+        <div class="buttons">
+            <button id="redirectCurrent" class="button primary-button">
+                <span>📖</span>
+                <span>Open Current Page in Freedium</span>
+            </button>
+            
+            <button id="openFreedium" class="button">
+                <span>🌐</span>
+                <span>Visit Freedium.cfd</span>
+            </button>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-tip">
+                <span>💡</span>
+                <span>Right-click on Medium pages for quick access!</span>
+            </div>
+        </div>
     </div>
 
     <script src="popup.js"></script>
