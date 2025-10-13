@@ -14,7 +14,9 @@
     "permissions": [
         "declarativeNetRequest",
         "activeTab",
-        "contextMenus"
+        "contextMenus",
+        "storage",
+        "alarms"
     ],
     "host_permissions": [
         "https://medium.com/*",
@@ -85,6 +87,11 @@
                 "id": "medium_redirect_rules",
                 "enabled": true,
                 "path": "rules.json"
+            },
+            {
+                "id": "medium_redirect_rules_mirror",
+                "enabled": false,
+                "path": "rules-mirror.json"
             }
         ]
     }
